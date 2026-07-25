@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organización de Archivos del Teléfono</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px 20px;
+        }
+
+        .section {
+            margin-bottom: 50px;
+        }
+
+        .section h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 2em;
+            border-bottom: 3px solid #764ba2;
+            padding-bottom: 10px;
+        }
+
+        .folder-structure {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            margin-bottom: 20px;
+        }
+
+        .folder-structure code {
+            line-height: 1.8;
+            display: block;
+            color: #333;
+        }
+
+        .folder-structure .folder {
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .folder-structure .subfolder {
+            color: #764ba2;
+            margin-left: 20px;
+        }
+
+        .folders-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .folder-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .folder-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .folder-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .folder-card p {
+            opacity: 0.9;
+            font-size: 0.95em;
+        }
+
+        .emoji {
+            font-size: 1.3em;
+        }
+
+        .tips {
+            background: #e3f2fd;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .tips h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .tips ul {
+            margin-left: 20px;
+        }
+
+        .tips li {
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        .recommendations {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .rec-item {
+            background: #f0f4ff;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .rec-item strong {
+            color: #667eea;
+        }
+
+        .checklist {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .checklist ul {
+            list-style: none;
+        }
+
+        .checklist li {
+            padding: 10px;
+            margin-bottom: 5px;
+            border-left: 3px solid #667eea;
+            padding-left: 15px;
+        }
+
+        .checklist input[type="checkbox"] {
+            margin-right: 10px;
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+        }
+
+        .download-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .download-section h3 {
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 5px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .download-btn:hover {
+            background: #f0f4ff;
+            transform: scale(1.05);
+        }
+
+        .footer {
+            background: #f5f5f5;
+            padding: 30px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #ddd;
+        }
+
+        .footer p {
+            margin-bottom: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table th,
+        table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        table th {
+            background: #f0f4ff;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        table tr:hover {
+            background: #f9f9f9;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .section h2 {
+                font-size: 1.5em;
+            }
+
+            .folders-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .folder-structure {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📱 Organización de Archivos del Teléfono</h1>
+            <p>Guía completa para mantener tu teléfono organizado y eficiente</p>
+        </div>
+
+        <div class="content">
+            <!-- Introducción -->
+            <div class="section">
+                <h2>¿Por qué organizar?</h2>
+                <p>Una estructura de carpetas bien organizada te ayuda a:</p>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>✅ Encontrar archivos rápidamente</li>
+                    <li>✅ Optimizar el espacio de almacenamiento</li>
+                    <li>✅ Realizar copias de seguridad más fácilmente</li>
+                    <li>✅ Mantener tu teléfono limpio y eficiente</li>
+                    <li>✅ Reducir estrés y frustración</li>
+                </ul>
+            </div>
+
+            <!-- Estructura Principal -->
+            <div class="section">
+                <h2>Estructura de Carpetas Principal</h2>
+                <p style="margin-bottom: 20px;">Aquí está la estructura recomendada para tu teléfono:</p>
+
+                <div class="folders-grid">
+                    <div class="folder-card">
+                        <h3><span class="emoji">📸</span> Fotos</h3>
+                        <p>Organiza por año, mes o categoría. Mantén tus recuerdos perfectamente clasificados.</p>
+                    </div>
+                    <div class="folder-card">
+                        <h3><span class="emoji">🎬</span> Videos</h3>
+                        <p>Videos personales, tutoriales y descargas. Categoriza por tipo.</p>
+                    </div>
+                    <div class="folder-card">
+                        <h3><span class="emoji">📄</span> Documentos</h3>
+                        <p>Trabajo, estudio, trámites y facturas. Organiza por tipo de documento.</p>
+                    </div>
+                    <div class="folder-card">
+                        <h3><span class="emoji">🎵</span> Música</h3>
+                        <p>Canciones, podcasts y audiobooks. Agrupa por género o preferencia.</p>
+                    </div>
+                    <div class="folder-card">
+                        <h3><span class="emoji">📱</span> Aplicaciones</h3>
+                        <p>Instaladores y datos. Organiza por categoría de uso.</p>
+                    </div>
+                    <div class="folder-card">
+                        <h3><span class="emoji">📥</span> Descargas</h3>
+                        <p>Archivos descargados. Revisa regularmente y clasifica.</p>
+                    </div>
+                    <div class="folder-card">
+                        <h3><span class="emoji">🖼️</span> Capturas</h3>
+                        <p>Screenshots. Organiza por año o importancia.</p>
+                    </div>
+                    <div class="folder-card">
+                        <h3><span class="emoji">👥</span> Contactos</h3>
+                        <p>Backups y grupos. Mantén tu red de contactos segura.</p>
+                    </div>
+                    <div class="folder-card">
+                        <h3><span class="emoji">💬</span> Mensajes</h3>
+                        <p>Conversaciones importantes. Realiza backups regularmente.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabla de Carpetas -->
+            <div class="section">
+                <h2>Detalle de Carpetas</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Carpeta</th>
+                            <th>Descripción</th>
+                            <th>Subcarpetas Sugeridas</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>📸 Fotos</td>
+                            <td>Todas tus fotografías</td>
+                            <td>2024, 2025, Viajes, Familia, Eventos, Misc</td>
+                        </tr>
+                        <tr>
+                            <td>🎬 Videos</td>
+                            <td>Videos personales y descargados</td>
+                            <td>Personales, Tutoriales, Descargas</td>
+                        </tr>
+                        <tr>
+                            <td>📄 Documentos</td>
+                            <td>Archivos de texto y PDF</td>
+                            <td>Trabajo, Estudio, Personales, Trámites, Facturas</td>
+                        </tr>
+                        <tr>
+                            <td>🎵 Música</td>
+                            <td>Canciones y archivos de audio</td>
+                            <td>Canciones, Podcasts, Audiobooks, Playlists</td>
+                        </tr>
+                        <tr>
+                            <td>📱 Aplicaciones</td>
+                            <td>Instaladores y datos</td>
+                            <td>Herramientas, Juegos, Redes Sociales, Productividad</td>
+                        </tr>
+                        <tr>
+                            <td>📥 Descargas</td>
+                            <td>Archivos descargados</td>
+                            <td>Por Revisar, Instaladores, Archivos</td>
+                        </tr>
+                        <tr>
+                            <td>🖼️ Capturas</td>
+                            <td>Screenshots</td>
+                            <td>2024, 2025, Favoritas</td>
+                        </tr>
+                        <tr>
+                            <td>👥 Contactos</td>
+                            <td>Información de contactos</td>
+                            <td>Backup, Grupos</td>
+                        </tr>
+                        <tr>
+                            <td>💬 Mensajes</td>
+                            <td>Conversaciones guardadas</td>
+                            <td>Backup, Importante</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Mejores Prácticas -->
+            <div class="section">
+                <h2>Mejores Prácticas</h2>
+
+                <div class="tips">
+                    <h4>📝 Nomenclatura de Archivos</h4>
+                    <p><strong>Recomendado:</strong></p>
+                    <ul>
+                        <li>2024-07-25_Vacaciones_Playa.jpg</li>
+                        <li>Contrato_Trabajo_2024.pdf</li>
+                        <li>Factura_Electricidad_Julio_2024.pdf</li>
+                    </ul>
+                    <p style="margin-top: 10px;"><strong>Evitar:</strong></p>
+                    <ul>
+                        <li>foto123.jpg</li>
+                        <li>documento.pdf</li>
+                        <li>archivo_final_v2_nuevo.docx</li>
+                    </ul>
+                </div>
+
+                <div class="tips">
+                    <h4>🔄 Limpieza Regular</h4>
+                    <ul>
+                        <li><strong>Semanal:</strong> Revisa la carpeta "Descargas"</li>
+                        <li><strong>Mensual:</strong> Organiza nuevas fotos, limpia archivos temporales</li>
+                        <li><strong>Trimestral:</strong> Elimina duplicados y revisa apps no usadas</li>
+                        <li><strong>Anual:</strong> Revisa y archiva años anteriores</li>
+                    </ul>
+                </div>
+
+                <div class="tips">
+                    <h4>💾 Copias de Seguridad</h4>
+                    <ul>
+                        <li>Google Drive (Android/iOS)</li>
+                        <li>iCloud (iPhone)</li>
+                        <li>OneDrive (Windows/All)</li>
+                        <li>Dropbox (All)</li>
+                        <li>Almacenamiento local (Computadora)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Herramientas por Teléfono -->
+            <div class="section">
+                <h2>Herramientas Recomendadas</h2>
+
+                <div class="recommendations">
+                    <div class="rec-item">
+                        <strong>Android</strong>
+                        <ul style="margin-top: 10px; margin-left: 15px;">
+                            <li>Google Files App</li>
+                            <li>Google Drive</li>
+                            <li>OneDrive</li>
+                            <li>SD Maid</li>
+                        </ul>
+                    </div>
+                    <div class="rec-item">
+                        <strong>iPhone</strong>
+                        <ul style="margin-top: 10px; margin-left: 15px;">
+                            <li>Apple Archivos</li>
+                            <li>iCloud</li>
+                            <li>Google Drive</li>
+                            <li>OneDrive</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Checklist -->
+            <div class="section">
+                <h2>Checklist de Organización</h2>
+
+                <div class="checklist">
+                    <h4 style="margin-bottom: 15px;">Fase 1: Preparación</h4>
+                    <ul>
+                        <li><label><input type="checkbox"> Realizar copia de seguridad completa</label></li>
+                        <li><label><input type="checkbox"> Liberar espacio en almacenamiento</label></li>
+                        <li><label><input type="checkbox"> Descargar gestor de archivos si es necesario</label></li>
+                    </ul>
+
+                    <h4 style="margin-top: 20px; margin-bottom: 15px;">Fase 2: Crear Estructura</h4>
+                    <ul>
+                        <li><label><input type="checkbox"> Crear carpetas principales</label></li>
+                        <li><label><input type="checkbox"> Crear subcarpetas</label></li>
+                        <li><label><input type="checkbox"> Verificar estructura completa</label></li>
+                    </ul>
+
+                    <h4 style="margin-top: 20px; margin-bottom: 15px;">Fase 3: Organizar Contenido</h4>
+                    <ul>
+                        <li><label><input type="checkbox"> Mover fotos a carpetas correspondientes</label></li>
+                        <li><label><input type="checkbox"> Organizar documentos</label></li>
+                        <li><label><input type="checkbox"> Clasificar música y videos</label></li>
+                        <li><label><input type="checkbox"> Limpiar descargas</label></li>
+                    </ul>
+
+                    <h4 style="margin-top: 20px; margin-bottom: 15px;">Fase 4: Copias de Seguridad</h4>
+                    <ul>
+                        <li><label><input type="checkbox"> Configurar backup automático en la nube</label></li>
+                        <li><label><input type="checkbox"> Hacer respaldo en computadora</label></li>
+                        <li><label><input type="checkbox"> Verificar que los backups funcionan</label></li>
+                    </ul>
+
+                    <h4 style="margin-top: 20px; margin-bottom: 15px;">Fase 5: Mantenimiento</h4>
+                    <ul>
+                        <li><label><input type="checkbox"> Establecer rutina de limpieza semanal</label></li>
+                        <li><label><input type="checkbox"> Revisar y ajustar sistema según sea necesario</label></li>
+                        <li><label><input type="checkbox"> Mantener backups actualizados</label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Descargas -->
+            <div class="download-section">
+                <h3>📥 Descargar Guías Completas</h3>
+                <p style="margin-bottom: 20px;">Accede a documentos detallados para una organización completa:</p>
+                <a href="GUIA_ORGANIZACION.md" class="download-btn">📖 Guía Completa</a>
+                <a href="CHECKLIST_ORGANIZACION.md" class="download-btn">✅ Checklist Detallado</a>
+                <a href="archivos_telefono/README.md" class="download-btn">📂 Estructura de Carpetas</a>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p><strong>Duración estimada:</strong> 2-3 semanas para organización completa</p>
+            <p><strong>Mantenimiento:</strong> 30-45 minutos mensuales</p>
+            <p style="margin-top: 20px; font-size: 0.9em; color: #999;">¡Tu teléfono organizado = Menos estrés y más productividad! 📱✨</p>
+        </div>
+    </div>
+</body>
+</html>
