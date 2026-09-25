@@ -1,7 +1,11 @@
 from reportlab.lib.pagesizes import A4
 from reportlab.pdfgen import canvas
 from reportlab.lib.utils import ImageReader
-import os
+import os, io
+from PIL import Image
+def reducir(ruta):
+    im=Image.open(ruta).convert("RGB"); im.thumbnail((900,900))
+    b=io.BytesIO(); im.save(b,"JPEG",quality=65); b.seek(0); return ImageReader(b)
 D=os.path.dirname(os.path.abspath(__file__))
 # (foto, titulo, tecnica, año, medidas, propietario, nota)
 OBRAS=[
@@ -38,7 +42,7 @@ for i,(f,t,tec,a,m,p,n) in enumerate(OBRAS,1):
     c.setFont("Helvetica-Bold",20); c.drawCentredString(W/2,H-60,"Cuadros Pilar Sousa Galería")
     c.setFont("Helvetica",10); c.drawCentredString(W/2,H-78,"Inventario documentado de obras")
     c.line(50,H-90,W-50,H-90)
-    img=ImageReader(os.path.join(D,f)); iw,ih=img.getSize()
+    img=reducir(os.path.join(D,f)); iw,ih=img.getSize()
     s=min((W-100)/iw,(H-360)/ih); w,h=iw*s,ih*s
     c.drawImage(img,(W-w)/2,H-110-h,w,h)
     y=H-150-h
