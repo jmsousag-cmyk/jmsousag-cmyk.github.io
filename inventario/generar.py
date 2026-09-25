@@ -27,6 +27,7 @@ OBRAS=[
  ("20.jpg","Sin título","Acrílico sobre tela","Sin fecha","100 cm x 70 cm","Andrés Schwalb","Díptico"),
  ("21.jpg","Sin título","Acrílico sobre tela","Sin fecha","70 cm x 70 cm / 70 cm x 70 cm / 70 cm x 70 cm","Andrés Schwalb","Tríptico"),
  ("22.jpg","Sin título","Óleo sobre tela","Sin fecha","90 cm x 90 cm","Álvaro Sousa",""),
+ ("23.jpg","Sin título","Desconocida","Sin fecha","Desconocidas","Álvaro Sousa",""),
 ]
 W,H=A4; c=canvas.Canvas(os.path.join(D,"Cuadros_Pilar_Sousa_Galeria.pdf"),pagesize=A4)
 c.setTitle("Cuadros Pilar Sousa Galería")
