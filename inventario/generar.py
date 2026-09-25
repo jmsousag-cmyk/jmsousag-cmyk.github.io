@@ -4,7 +4,7 @@ from reportlab.lib.utils import ImageReader
 import os
 D=os.path.dirname(os.path.abspath(__file__))
 # (foto, titulo, tecnica, medidas, propietario)
-OBRAS=[("01.jpg","Sin título","Técnica mixta sobre cartulina","32,5 cm x 49,5 cm","Por completar")]
+OBRAS=[("01.jpg","Sin título","Técnica mixta sobre cartulina","32,5 cm x 49,5 cm","Andrés Schwalb")]
 W,H=A4; c=canvas.Canvas(os.path.join(D,"Cuadros_Pilar_Sousa_Galeria.pdf"),pagesize=A4)
 c.setTitle("Cuadros Pilar Sousa Galería")
 for i,(f,t,tec,m,p) in enumerate(OBRAS,1):
