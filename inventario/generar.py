@@ -14,6 +14,7 @@ OBRAS=[
  ("07.jpg","Sin título","Técnica mixta sobre tela","2019","140 cm x 34 cm / 140 cm x 22 cm / 140 cm x 43 cm","Andrés Schwalb","Tríptico"),
  ("08.jpg","Sin título","Acrílico sobre tela","2018","59 cm x 79 cm","Andrés Schwalb",""),
  ("09.jpg","Sin título","Dibujo, técnica mixta sobre tela","2018","87 cm x 81 cm","Desconocido (vendido)","Según Andrés Schwalb fue vendido; no sabe a quién"),
+ ("10.jpg","Sin título","Técnica mixta sobre tela","2020","60 cm x 120 cm","Andrés Schwalb",""),
 ]
 W,H=A4; c=canvas.Canvas(os.path.join(D,"Cuadros_Pilar_Sousa_Galeria.pdf"),pagesize=A4)
 c.setTitle("Cuadros Pilar Sousa Galería")
