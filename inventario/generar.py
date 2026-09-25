@@ -15,7 +15,7 @@ OBRAS=[
  ("08.jpg","Sin título","Acrílico sobre tela","2018","59 cm x 79 cm","Andrés Schwalb",""),
  ("09.jpg","Sin título","Dibujo, técnica mixta sobre tela","2018","87 cm x 81 cm","Desconocido (vendido)","Según Andrés Schwalb fue vendido; no sabe a quién"),
  ("10.jpg","Sin título","Técnica mixta sobre tela","2020","60 cm x 120 cm","Andrés Schwalb",""),
- ("11.jpg","Sin título","Óleo sobre tela","2023","Por completar","Álvaro Sousa",""),
+ ("11.jpg","Sin título","Óleo sobre tela","2023","64 cm x 79 cm","Álvaro Sousa",""),
  ("12.jpg","Sin título","Óleo sobre tela","2006","64 cm x 79 cm","Andrés Schwalb","Andrés Schwalb lo dona"),
  ("13.jpg","Sin título","Técnica mixta sobre MDF","2017","61 cm x 74 cm","Andrés Schwalb",""),
  ("14.jpg","Sin título","Técnica mixta sobre tela","2020","50 cm x 70 cm","Andrés Schwalb",""),
