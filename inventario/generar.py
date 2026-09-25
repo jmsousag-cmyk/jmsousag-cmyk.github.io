@@ -31,6 +31,9 @@ OBRAS=[
 ]
 W,H=A4; c=canvas.Canvas(os.path.join(D,"Cuadros_Pilar_Sousa_Galeria.pdf"),pagesize=A4)
 c.setTitle("Cuadros Pilar Sousa Galería")
+c.setFont("Helvetica-Bold",34); c.drawCentredString(W/2,H/2+20,"PINTURAS PILAR SOUSA")
+c.setFont("Helvetica",14); c.drawCentredString(W/2,H/2-15,"Inventario septiembre 2026")
+c.showPage()
 for i,(f,t,tec,a,m,p,n) in enumerate(OBRAS,1):
     c.setFont("Helvetica-Bold",20); c.drawCentredString(W/2,H-60,"Cuadros Pilar Sousa Galería")
     c.setFont("Helvetica",10); c.drawCentredString(W/2,H-78,"Inventario documentado de obras")
