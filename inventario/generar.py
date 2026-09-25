@@ -5,7 +5,7 @@ import os
 D=os.path.dirname(os.path.abspath(__file__))
 # (foto, titulo, tecnica, año, medidas, propietario, nota)
 OBRAS=[
- ("01.jpg","Sin título","Técnica mixta sobre cartulina","","32,5 cm x 49,5 cm","Andrés Schwalb",""),
+ ("01.jpg","Sin título","Técnica mixta sobre cartulina","Sin fecha","32,5 cm x 49,5 cm","Andrés Schwalb",""),
  ("02.jpg","Sin título","Técnica mixta sobre tela","2021","110 cm x 110 cm","Álvaro Sousa","Andrés Schwalb no recuerda"),
  ("03.jpg","Sin título","Acrílico sobre tela","2019","122 cm x 92 cm","Andrés Schwalb",""),
  ("04.jpg","Sin título","Acrílico sobre tela","Sin fecha","100 cm x 150 cm","Andrés Schwalb",""),
