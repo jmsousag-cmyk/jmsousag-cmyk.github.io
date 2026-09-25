@@ -7,6 +7,7 @@ D=os.path.dirname(os.path.abspath(__file__))
 OBRAS=[
  ("01.jpg","Sin título","Técnica mixta sobre cartulina","","32,5 cm x 49,5 cm","Andrés Schwalb",""),
  ("02.jpg","Sin título","Técnica mixta sobre tela","2021","110 cm x 110 cm","Álvaro Sousa","Andrés Schwalb no recuerda"),
+ ("03.jpg","Sin título","Acrílico sobre tela","2019","122 cm x 92 cm","Andrés Schwalb",""),
 ]
 W,H=A4; c=canvas.Canvas(os.path.join(D,"Cuadros_Pilar_Sousa_Galeria.pdf"),pagesize=A4)
 c.setTitle("Cuadros Pilar Sousa Galería")
