@@ -11,7 +11,7 @@ OBRAS=[
  ("04.jpg","Sin título","Acrílico sobre tela","Sin fecha","100 cm x 150 cm","Andrés Schwalb",""),
  ("05.jpg","Sin título","Óleo sobre tela","2018","80 cm x 120 cm","Álvaro Sousa",""),
  ("06.jpg","Sin título","Óleo sobre tela","2018","60 cm x 50 cm","Álvaro Sousa",""),
- ("07.jpg","Sin título","Técnica mixta sobre tela","2019","140 cm x 34 cm / 140 cm x 22 cm / 140 cm x 43 cm","Andrés Schwalb",""),
+ ("07.jpg","Sin título","Técnica mixta sobre tela","2019","140 cm x 34 cm / 140 cm x 22 cm / 140 cm x 43 cm","Andrés Schwalb","Tríptico"),
 ]
 W,H=A4; c=canvas.Canvas(os.path.join(D,"Cuadros_Pilar_Sousa_Galeria.pdf"),pagesize=A4)
 c.setTitle("Cuadros Pilar Sousa Galería")
